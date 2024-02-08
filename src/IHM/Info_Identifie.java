@@ -4,6 +4,7 @@
  */
 package IHM;
 
+
 import java.util.ArrayList;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -19,15 +20,22 @@ public class Info_Identifie extends javax.swing.JFrame {
      */private Map<String, Object> employe;
     public Info_Identifie() {
         initComponents();
-        int id_employe =10;
+        int id_employe =39;
+       
+        
         Object[] d = {id_employe};
         ArrayList datas = core.DB.i().statement(""
                 + "SELECT *, service.nom AS nom_service FROM employes "
                 + "JOIN service ON service.id_service=employes.id_service "
                 + "WHERE employes.id_employe=?", d);
+        
+        
+      
         if(!datas.isEmpty()){
             this.employe = (Map) datas.get(0);
             // this.employe.get("attribut_de_la_table")
+            String photopath = this.employe.get("photo").toString();
+            String destinationPath = "C:\\Users\\HP\\Pictures\\imagegrh\\"+photopath;
             NOM.setText(this.employe.get("nom").toString());
             POSTNOM.setText(this.employe.get("post_nom").toString());
             PRENOM.setText(this.employe.get("prenom").toString());
@@ -35,12 +43,13 @@ public class Info_Identifie extends javax.swing.JFrame {
             SALAIRE.setText(this.employe.get("salire").toString());
              SERVICE.setText(this.employe.get("nom_service").toString());
             ROLE.setText(this.employe.get("role_servise").toString());
-                 
+            PHOTO.setIcon(new  javax.swing.ImageIcon(destinationPath));
         }
         else{
             JOptionPane.showMessageDialog(null, "ERROR IDENTIFIANT NON TROUVER");
         }
-        System.out.println();
+        
+        //System.out.println();
     }
 
     /**
@@ -68,7 +77,7 @@ public class Info_Identifie extends javax.swing.JFrame {
         SALAIRE = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         ROLE = new javax.swing.JTextPane();
-        jLabel9 = new javax.swing.JLabel();
+        PHOTO = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -102,7 +111,7 @@ public class Info_Identifie extends javax.swing.JFrame {
         ROLE.setEditable(false);
         jScrollPane1.setViewportView(ROLE);
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IHM/defaultimage.png"))); // NOI18N
+        PHOTO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IHM/defaultimage.png"))); // NOI18N
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
@@ -135,7 +144,8 @@ public class Info_Identifie extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(NOM, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(PHOTO, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -143,21 +153,16 @@ public class Info_Identifie extends javax.swing.JFrame {
                                 .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)))))
                 .addGap(0, 41, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(147, 147, 147)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addContainerGap()
+                .addComponent(PHOTO, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(NOM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -254,6 +259,7 @@ public class Info_Identifie extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField EMBAUCHE;
     private javax.swing.JTextField NOM;
+    private javax.swing.JLabel PHOTO;
     private javax.swing.JTextField POSTNOM;
     private javax.swing.JTextField PRENOM;
     private javax.swing.JTextPane ROLE;
@@ -267,7 +273,6 @@ public class Info_Identifie extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
