@@ -441,8 +441,10 @@ public class Employe extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       AjoutEmploye a=new AjoutEmploye();
-       a.setVisible(true);
+       new EmpreinteEnregistrement().setVisible(true);
+        setVisible(false);
+        /*AjoutEmploye a=new AjoutEmploye();
+       a.setVisible(true);*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

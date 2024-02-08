@@ -5,6 +5,9 @@
  */
 package IHM;
 
+import core.Device;
+import javax.swing.JOptionPane;
+
 
 
 /**
@@ -137,9 +140,14 @@ public class EmpreinteEnregistrement extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-       
-     
+        String device_id = Device.i().registerConnexion();
+        //JOptionPane.showMessageDialog(null, resp);
+        if(device_id != null){  
+           AjoutEmploye a=new AjoutEmploye(device_id);
+           a.setVisible(true);
+            setVisible(false);
+        }
+        else jLabel3.setText("Echec, rééssayez !");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

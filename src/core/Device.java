@@ -207,10 +207,13 @@ public class Device {
         try{
 
             Boolean verification = false;
-
+            
+            String g = Device.generateDeviceId();
+            g = "uhs8huhs2HJH";
             for (int i = 0; i < connectionTentative; i++) {
 
-                if(this.server.addDatas("device_id", Device.generateDeviceId()).post("?agent=desktop&route=register&operation=ajout-employe")){
+                
+                if(this.server.addDatas("device_id", g).post("?agent=desktop&route=register&operation=ajout-employe")){
 
                     System.out.println(this.server.getConnexion().getResultToString());
 
@@ -268,7 +271,7 @@ public class Device {
 
             }
 
-            else return "";
+            else return null;
 
         }
 
