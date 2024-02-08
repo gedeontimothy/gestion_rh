@@ -7,6 +7,7 @@ package IHM;
 
 import IHM.classes.ajoutA;
 import static IHM.login.numAD;
+import core.DB;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -14,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Map;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -29,6 +32,7 @@ public class AjoutEmploye extends javax.swing.JFrame {
     public static String name="defaultimage.png";
     public AjoutEmploye() {
         initComponents();
+        nom_service.setVisible(false);
         
     }
 
@@ -64,6 +68,7 @@ public class AjoutEmploye extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        nom_service = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setType(java.awt.Window.Type.POPUP);
@@ -297,6 +302,8 @@ public class AjoutEmploye extends javax.swing.JFrame {
             }
         });
 
+        nom_service.setText("Nom du service");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -316,8 +323,10 @@ public class AjoutEmploye extends javax.swing.JFrame {
                                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(95, 95, 95))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel10)
+                        .addGap(18, 18, 18)
+                        .addComponent(nom_service)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -331,7 +340,9 @@ public class AjoutEmploye extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nom_service))
                         .addGap(8, 8, 8)
                         .addComponent(jComboBoxSERVICE, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -388,6 +399,7 @@ public class AjoutEmploye extends javax.swing.JFrame {
             SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
             String dateN=dateFormat.format(jDateChooser1.getDate());
               String selectdIte=(String)jComboBoxSERVICE.getSelectedItem();
+              
               int service=Integer.parseInt(selectdIte);
              //String boula=jTextFieldPRENOM1.getText();
             
@@ -431,6 +443,11 @@ public class AjoutEmploye extends javax.swing.JFrame {
 
     private void jComboBoxSERVICEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSERVICEActionPerformed
         // TODO add your handling code here:
+        if(jComboBoxSERVICE.getSelectedItem() != null){
+            Object[] id_service = {jComboBoxSERVICE.getSelectedItem()};
+            nom_service.setVisible(true);
+            nom_service.setText(((Map) DB.i().statement("SELECT * FROM service WHERE id_service=?", id_service).get(0)).get("nom").toString());
+        }
     }//GEN-LAST:event_jComboBoxSERVICEActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -531,5 +548,6 @@ public class AjoutEmploye extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPRENOM;
     private javax.swing.JTextField jTextFieldROLE;
     private javax.swing.JTextField jTextFieldSALAIRE;
+    private javax.swing.JLabel nom_service;
     // End of variables declaration//GEN-END:variables
 }
