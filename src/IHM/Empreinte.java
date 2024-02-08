@@ -6,6 +6,7 @@
 package IHM;
 
 
+import core.Device;
 import javax.swing.JOptionPane;
 
 /**
@@ -140,8 +141,15 @@ public class Empreinte extends javax.swing.JFrame {
         // TODO add your handling code here:
         
        
-        
-      int n= JOptionPane.showConfirmDialog(this,"Impossible de detecter le scanner \n veuillez passer a l'identification manuel");
+        String response = Device.identityButton(jLabel3);
+        if(response == "echec"){
+            jLabel3.setText("Echec, rééssayez !");
+        }
+        else{
+            new Info_Identifie(Integer.parseInt(response)).setVisible(true);
+            setVisible(false);
+        }
+      /*int n= JOptionPane.showConfirmDialog(this,"Impossible de detecter le scanner \n veuillez passer a l'identification manuel");
       if(n==0)
       {    this.dispose();
           new registre().setVisible(true); 
@@ -154,7 +162,7 @@ public class Empreinte extends javax.swing.JFrame {
       else
       {
          alerte.setText("reesayez");
-      }
+      }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

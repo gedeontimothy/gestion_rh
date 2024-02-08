@@ -18,12 +18,16 @@ public class Info_Identifie extends javax.swing.JFrame {
     /**
      * Creates new form Info_Identifie
      */private Map<String, Object> employe;
-    public Info_Identifie() {
+    public Info_Identifie(Integer id_employe) {
         initComponents();
-        int id_employe =39;
+        if(id_employe == null){
+            id_employe = 1;
+            JOptionPane.showMessageDialog(null, "EMPLOYE TEST");
+        }
+            
        
         
-        Object[] d = {id_employe};
+        Object[] d = {(int) id_employe};
         ArrayList datas = core.DB.i().statement(""
                 + "SELECT *, service.nom AS nom_service FROM employes "
                 + "JOIN service ON service.id_service=employes.id_service "
@@ -46,7 +50,7 @@ public class Info_Identifie extends javax.swing.JFrame {
             PHOTO.setIcon(new  javax.swing.ImageIcon(destinationPath));
         }
         else{
-            JOptionPane.showMessageDialog(null, "ERROR IDENTIFIANT NON TROUVER");
+            JOptionPane.showMessageDialog(null, "ERROR IDENTIFIANT NON TROUVER ID : " + id_employe);
         }
         
         //System.out.println();
@@ -251,7 +255,7 @@ public class Info_Identifie extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Info_Identifie().setVisible(true);
+                new Info_Identifie(null).setVisible(true);
             }
         });
     }

@@ -305,7 +305,7 @@ public class Device {
     }
     
     
-    public static void identityButton(JLabel jLabel3){
+    public static String identityButton(JLabel jLabel3){
         try {
 
             Map<String, String> response;
@@ -335,9 +335,10 @@ public class Device {
 
             else if(response.get("type").equals("authentified")){
                 if(response.containsKey("in-database") && response.get("in-database") == "yes"){
-                    JOptionPane.showMessageDialog(null, "Employe id : " + response.get("id_employe") + "\n" + " code : " + response.get("device_id"));
+                    //JOptionPane.showMessageDialog(null, "Employe id : " + response.get("id_employe") + "\n" + " code : " + response.get("device_id"));
                     if(Device.i().operationTerminate(5, response.get("device_id"))){
-                        JOptionPane.showMessageDialog(null,"Test");
+                        //JOptionPane.showMessageDialog(null,"Test");
+                        return response.get("id_employe").toString();
                     }
                 }
                 else{
@@ -362,5 +363,6 @@ public class Device {
         } catch (InterruptedException ex) {
             Logger.getLogger(Empreinte.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return "echec";
     }
 }
