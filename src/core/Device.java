@@ -209,7 +209,7 @@ public class Device {
             Boolean verification = false;
             
             String g = Device.generateDeviceId();
-            g = "uhs8huhs2HJH";
+            // g = "uhs8huhs2HJH";
             for (int i = 0; i < connectionTentative; i++) {
 
                 
