@@ -8,6 +8,7 @@ package IHM;
 import IHM.classes.ajoutA;
 import static IHM.login.numAD;
 import core.DB;
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,6 +38,11 @@ public class AjoutEmploye extends javax.swing.JFrame {
         this.device_id = device_id;
         device_id_field.setText(this.device_id);
     }
+
+  
+   
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.

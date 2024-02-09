@@ -178,7 +178,7 @@ public class ajoutA {
         String requette = "INSERT INTO employes (id_employe,empreinte,nom,post_nom,prenom,date_embauche,photo,salire,role_servise,id_service,id_admin) values ('"+this.id+"','"+this.emprente+"','"+this.nom+"','"+this.postnom+"','"+this.prenom+"','"+this.date_embau+"','"+this.photo+"','"+this.salaire+"','"+this.role_serv+"','"+this.id_sev+"','"+this.id_admin+"');";
         int n = st.executeUpdate(requette);// car il y aura une modification à la BD
         if(n==1){//
-           // JOptionPane.showMessageDialog(null, "ENREGISTREMENT REUSSI AVEC SUCCES !");
+            JOptionPane.showMessageDialog(null, "ENREGISTREMENT REUSSI AVEC SUCCES !");
         
 ////        DefaultTableModel model = (DefaultTableModel) tables.getModel();
 ////        Object[] ligne ={this.id,this.emprente,this.nom,this.postnom,this.prenom,this.date_embau,this.photo,this.salaire,this.role_serv,this.statut,this.id_sev,this.id_admin};// this car c'est la personne même qui va l'appeler(enregistrer) en l'instant
@@ -283,7 +283,8 @@ public class ajoutA {
         }
      
     
-}public int recuperationUser(String user, String pass) {
+}
+    public int recuperationUser(String user, String pass) {
     int re = 0;
     try {
         Connetion();
@@ -305,8 +306,9 @@ public class ajoutA {
     } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Erreur lors de la récupération de l'utilisateur : " + e.getMessage());
     }
-    return re;
-}public void AfficherLISTE(JTable table ){
+        return re;
+  }
+    public void AfficherLISTE(JTable table ){
          try {
            Connetion();
            Statement st=null;
@@ -327,5 +329,54 @@ public class ajoutA {
            JOptionPane.showMessageDialog(null,"requete  non effectuer"+ex);
        }
           
+    }
+
+    public void  Rechercher(JTable tab,String mot){
+ 
+    
+     try {
+           Connetion();
+           Statement st=null;
+           ResultSet result=null;
+           String requete="select *  from employes where nom like'"+mot+"%';";
+            st=con.createStatement();
+            result=st.executeQuery(requete);
+            DefaultTableModel model=(DefaultTableModel) tab.getModel();
+            model.setRowCount(0);
+           
+          
+            while(result.next())
+            {     Object[] ligne ={ result.getInt(1),result.getString(2),result.getString(3),result.getString(4),result.getString(5),result.getString(6),result.getString(7),result.getFloat(8),result.getString(9),result.getString(10),result.getInt(11),result.getInt(12)};
+                  model.addRow(ligne);
+            }
+           
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"requete  non effectuer"+ex);
+       }
+    }
+    public void AffichePresence(JTable table ){
+         try {
+           Connetion();
+           Statement st=null;
+           ResultSet result=null;
+           String requete="SELECT employes.nom , presence.heur_arrive, presence.heur_depart, presence.date ";
+                  requete+="FROM employes JOIN presence ON employes.id_employe = presence.id_employe ";
+                  requete += " WHERE presence.date = CURRENT_DATE ;";
+            st=con.createStatement();
+            result=st.executeQuery(requete);
+            DefaultTableModel model=(DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+           
+          
+            while(result.next())
+            {     Object[] ligne ={ result.getString(1),result.getString(2),result.getString(3),result.getString(4)};
+                  model.addRow(ligne);
+            }
+           
+       } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"requete  non effectuer"+ex);
+       }
+          
       }
+
 }
