@@ -454,7 +454,7 @@ public class AjoutEmploye extends javax.swing.JFrame {
            // c.setStatut((String) sex);
             c.setSalaire(ad);
             c.setDate_embau(dateN);
-            
+            c.setEmprente(device_id);
            c.Enregistre();
          
         } catch (NumberFormatException e) {
