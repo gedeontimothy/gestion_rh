@@ -6,7 +6,7 @@
 package IHM;
 
 import IHM.classes.listeAdmi;
-import IHM.classes.recherche;
+//import IHM.classes.recherche;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -199,7 +199,7 @@ public class liste_Admi extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1MouseReleased
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
-        recherche c =new recherche();
+        //recherche c =new recherche();
        // c.(jTable1, jTextField1, jLabel1);
     }//GEN-LAST:event_jTextField1KeyReleased
 
