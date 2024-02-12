@@ -7,7 +7,7 @@ package IHM;
 
 import IHM.classes.ajoutA;
 import IHM.classes.presence;
-import IHM.classes.recherche;
+//import IHM.classes.recherche;
 import static IHM.login.nameAD;
 import javax.swing.table.DefaultTableModel;
 
