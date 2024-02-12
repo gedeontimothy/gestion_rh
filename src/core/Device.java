@@ -99,7 +99,7 @@ public class Device {
 
             verification = false;
             
-            for (int i = 0; i < connectionTentative; i++) {
+            for (int i = 0; i < scanTentative; i++) {
 
                 if(this.server.post("?agent=desktop&route=identification-attempt-scan")){
 
@@ -204,6 +204,8 @@ public class Device {
         
         //servers.Serve s = gestion_rh.Gestion_RH.testS();
         
+        String result = null;
+        
         try{
 
             Boolean verification = false;
@@ -235,7 +237,7 @@ public class Device {
 
                     JOptionPane.showMessageDialog(null, "Echec de connexion");
                     
-                    return "connection-error";
+                    result = "connection-error";
 
                 }
 
@@ -243,7 +245,7 @@ public class Device {
 
                     Thread.sleep(5000);
 
-                    JOptionPane.showMessageDialog(null, "Connexion ok");
+                    JOptionPane.showMessageDialog(null, "Connexion ok\nEn attente du scan de l'appareil...");
 
                     for (int i = 0; i < scanTentative; i++) {
 
@@ -256,8 +258,21 @@ public class Device {
                             String[] resp = con.getResultToString().split("\n");
                             
                             
-                            
-                            return resp[1];
+                            if(!resp[1].equals("null")){
+
+                                result = resp[1];
+                                
+                                break;
+
+                            }
+
+                            if((i+1) >= scanTentative && resp[0].equals("no-phone-connect")){
+
+                                JOptionPane.showMessageDialog(null, "Aucun appareil connecté.");
+
+                                break;
+
+                            }
 
                         }
 
@@ -277,13 +292,13 @@ public class Device {
 
         catch (IOException e) {
             e.printStackTrace();
-            return "IOException";
+            result = "IOException";
         }
         catch (InterruptedException e) {
             e.printStackTrace();
-            return "InterruptedException";
+            result = "InterruptedException";
         }
-        return null;
+        return result;
     }
     
     public Boolean operationTerminate(){

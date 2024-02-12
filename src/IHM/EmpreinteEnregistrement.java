@@ -142,9 +142,9 @@ public class EmpreinteEnregistrement extends javax.swing.JFrame {
         // TODO add your handling code here:
         String device_id = Device.i().registerConnexion();
         //JOptionPane.showMessageDialog(null, resp);
-        if(device_id != null){  
-           AjoutEmploye a=new AjoutEmploye(device_id);
-           a.setVisible(true);
+        if(!device_id.equals("null") && !device_id.equals("false") && device_id != null){
+            AjoutEmploye a=new AjoutEmploye(device_id);
+            a.setVisible(true);
             setVisible(false);
         }
         else jLabel3.setText("Echec, rééssayez !");
