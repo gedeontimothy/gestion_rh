@@ -52,7 +52,7 @@ If a problem arises, you can simply open the terminal (or command prompt) in the
 ## III. Launching the Desktop Application
 First, open the project (or folder) [`grh_java`](grh_java/) in NetBeans and configure the paths for the JAR files. On your left, there is a __"Projects"__ section, and within that section, you'll find our project, which we opened as __"RH_Empreinte"__. Right-click on __"Libraries"__ and then __"> Add JAR/Folder"__. Then select the MySQL connector and JCalendar JAR files.
 
-You can run the project. Preferably, run the [`grh_java\src\IHM\login.java`](grh_java\src\IHM\login.java) file.</br>
+You can run the project. Preferably, run the [`grh_java/src/IHM/login.java`](grh_java/src/IHM/login.java) file.</br>
 For testing, log in with the following account:
 - __UserName__: admin
 - __Password__: 1234
