@@ -53,7 +53,7 @@ Si un problème se pose vous pouvez juste ouvrir le terminal (ou invite de comma
 ## III. Lancement de l'application Desktop
 En premier lieu, ouvrez le projet (ou dossier) [`grh_java`](grh_java/) dans NetBeans et configurez les chemins des fichiers JAR sur votre gauche il y a la section __"Projects"__ ou __"Projets"__ et dans celle-ci se trouve notre projet que l'on a ouvert avec le nom __"RH_Empreinte"__, faites un clic droit sur __"Libraries"__ et ensuite __"> Add JAR/Folder"__ ou __"Bibliothèques > Ajouter un JAR/Dossier"__. Ensuite, sélectionnez les fichiers JAR du connecteur __MySQL__ et le __JCalendar__.
 
-Vous pouvez exécuter le projet. De préférence, exécutez le fichier [`grh_java\src\IHM\login.java`](grh_java\src\IHM\login.java).</br>
+Vous pouvez exécuter le projet. De préférence, exécutez le fichier [`grh_java\src\IHM\login.java`](grh_java/src/IHM/login.java).</br>
 Pour les testes, connectez vous à ce compte :
 - __UserName__ : admin
 - __Password__ : 1234
